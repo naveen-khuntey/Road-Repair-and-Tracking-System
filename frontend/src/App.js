@@ -1,5 +1,5 @@
 import { BrowserRouter } from 'react-router-dom'
-import Router from './components/Navbar/Router';
+import Router from "./component/Router";
 import { Auth0Provider } from '@auth0/auth0-react';
 function App() {
   return (
