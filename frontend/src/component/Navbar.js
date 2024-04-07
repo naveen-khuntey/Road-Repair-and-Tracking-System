@@ -7,7 +7,6 @@ export default function Navbar() {
 
   const navItems = [
     { title: 'Home', path: '/' },
-    { title: 'Start', path: '/start' },
     { title: 'Complaint', path: '/complaint' },
     { title: 'Admin', path: '/admin' },
     { title: 'Supervisor', path: '/supervisor' },
@@ -21,22 +20,31 @@ export default function Navbar() {
   }
 
   return (
-    <nav class="">
-      <NavLink className='' to='/'><h1>RRTS</h1></NavLink>
-      <div class="" >
-        <div className=''>
-          {
-            navItems.map((item) => {
-              return (
-                <NavLink className='' id={item.title} to={item.path}>{item.title}</NavLink>
-              )
-            })
-          }
-          <img onClick={authClick} 
-            className="" src={user? user.picture : profile} alt={user?.name} 
-          />
-        </div>
+  <nav className="flex justify-around bg-gray-800 p-4">
+    <NavLink className="text-white text-2xl font-bold mr-4" to="/">
+      RRTS
+    </NavLink>
+    <div className="flex gap-4 items-center">
+      <div className="flex space-x-4">
+        {navItems.filter(()=> isAuthenticated ? true : false).map((item) => (
+          <NavLink
+            className="text-white hover:text-gray-300"
+            activeClassName="text-gray-300"
+            id={item.title}
+            to={item.path}
+            key={item.title}
+          >
+            {item.title}
+          </NavLink>
+        ))}
       </div>
-    </nav>
+      <img
+        onClick={authClick}
+        className="w-10 h-10 rounded-full cursor-pointer"
+        src={user ? user.picture : profile}
+        alt={user?.name}
+      />
+    </div>
+  </nav>
   )
 }
