@@ -7,10 +7,8 @@ export default function Navbar() {
 
   const navItems = [
     { title: 'Home', path: '/' },
-    { title: 'Complaint', path: '/complaint' },
-    { title: 'Admin', path: '/admin' },
-    { title: 'Supervisor', path: '/supervisor' },
-    { title: 'Stats', path: '/statistics' },
+    { title: 'RegisterComplaint', path: '/complaint' },
+    { title: 'statistics', path: '/statistics' },
   ]
 
   const authClick = () => {

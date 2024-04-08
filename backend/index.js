@@ -19,7 +19,7 @@ app.get('/',(req,res) => {
     res.status(200).end("Sanity Check : OK");
 })
 
-app.use('/complaint', complaintRouter);
+app.use('/', complaintRouter);
 app.use('/resource/material', materialRouter);
 app.use('/resource/labour', labourRouter);
 

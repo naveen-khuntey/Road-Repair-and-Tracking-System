@@ -11,7 +11,7 @@ function Router() {
   const { isLoading } = useAuth0();
 
   return isLoading ? <div>Loading...</div> : (
-    <> 
+      <div className='back'> 
         <Navbar/>
         <Routes>
           <Route path="/" index element={<LandingPage/>} />
@@ -21,7 +21,7 @@ function Router() {
           <Route path="/statistics" element={<Stats/>} />
           <Route path="*" element={<LandingPage/>} />
         </Routes>  
-      </>
+      </div>
   );
 }
 
