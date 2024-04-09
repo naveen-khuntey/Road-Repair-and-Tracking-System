@@ -1,30 +1,64 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import img from "../images/profile.jpg"
+import { useNavigate } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
+import { getUser } from '../utils/userController';
 import Card from './Card'
 export default function LandingPage() {
-  const { isAuthenticated,loginWithRedirect } = useAuth0();
+  const { isAuthenticated,loginWithRedirect, user } = useAuth0();
+  const [user1, setUser] = React.useState([]);
+  const navigate = useNavigate();
   const authClick = () => {
     loginWithRedirect("/");
   }
+  useEffect(() => {
+    getUser(setUser);
+    console.log(user1);
+  },[]);
+  const handleSuper = () => {
+    const us = user1.filter((ele)=> ele.isSupervisor === true && ele.email === user.email);
+    if(us.length === 0){
+      alert("You are not authorized to access this page");
+      navigate("/");
+    }
+    else{
+      alert("Successfull Login");
+      navigate("/supervisor");
+    }
+  }
+  const handleAdmin = () => {
+    const us = user1.filter((ele)=> ele.isAdmin === true && ele.email === user.email);
+    if(us.length === 0){
+      alert("You are not authorized to access this page");
+      navigate("/");
+    }
+    else{
+      alert("Successfull Login");
+      navigate("/admin");
+    }
+  }
+
   const cardata = [
     {
       id : '1',
       imageSrc :{img},
       buttonText: "Register Complaint",
-      path: "/complaint"
+      path: "/complaint",
+      handle: ""
     },
     {
       id : '2',
       imageSrc :{img},
       buttonText: "Supervisor Login",
-      path: "/supervisor"
+      path: "/supervisor",
+      handle: handleSuper
     },
     {
       id : '3',
       imageSrc :{img},
       buttonText: "Admin Login",
-      path: "/admin"
+      path: "/admin",
+      handle: handleAdmin
     }
 
   ]
@@ -35,7 +69,7 @@ export default function LandingPage() {
   ) : (
     <div className='flex justify-center align-middle gap-8 mt-9'>
       {cardata.map((ele)=>{
-        return <Card  key={ele.id} imageSrc={img} buttonText={ele.buttonText} path={ele.path} />
+        return <Card  key={ele.id} imageSrc={img} buttonText={ele.buttonText} path={ele.path} handle={ele.handle}/>
       })}
     </div>
   ) 

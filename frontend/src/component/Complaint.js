@@ -1,7 +1,7 @@
-import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import { addComplaint} from '../utils/complainController';
 export default function Complaint() {
    // State variable for form data
    const {user} = useAuth0();
@@ -11,16 +11,17 @@ export default function Complaint() {
     comment: '',
     email : user.email,
   });
+  const [complaints, setComplaints] = useState([]);
   const navigate = useNavigate();
   // Function to handle form submission
   const handleSubmit = (event) => {
     event.preventDefault();
-    // You can perform further actions like submitting the form data to an API here
       console.log('Form submitted:', formData);
+      addComplaint(formData, setFormData, setComplaints);
+      console.log(complaints);
       alert('Complaint submitted successfully');
       navigate('/');
   };
-
   // Function to handle input change
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -52,16 +53,19 @@ export default function Complaint() {
           <label className="block text-white text-sm font-bold mb-2" htmlFor="type">
             Type
           </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          <select
+            className="block appearance-none w-full bg-white border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             id="type"
-            type="text"
-            placeholder="Enter type"
             name="type"
             value={formData.type}
             onChange={handleInputChange}
             required
-          />
+          >
+            <option value="">Select Type</option>
+            <option value="Busy Area">Busy Area</option>
+            <option value="Commercial Area">Commercial Area</option>
+            <option value="Deserted Area">Deserted Area</option>
+          </select>
         </div>
         <div className="mb-6">
           <label className="block text-white text-sm font-bold mb-2" htmlFor="comment">

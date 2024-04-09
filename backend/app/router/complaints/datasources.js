@@ -20,9 +20,13 @@ const create = async (complaint) => {
 
     return newComplaint;
 }
-
+const _delete = async (appId,email) => {
+    const complaint = await model.findOneAndDelete({appId,email});
+    return complaint;
+}
 module.exports = {
     create,
     find,
-    find1
+    find1,
+    _delete
 }

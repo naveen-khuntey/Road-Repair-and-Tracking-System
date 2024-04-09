@@ -5,6 +5,7 @@ const mongooseInit = require('./app/config/mongoose');
 const complaintRouter = require('./app/router/complaints/resolver')
 const materialRouter = require('./app/router/material/resolver')
 const labourRouter = require('./app/router/labours/resolver')
+const userRouter = require('./app/router/user/resolver')
 require('dotenv').config();
 const app = express();
 mongooseInit();
@@ -19,9 +20,10 @@ app.get('/',(req,res) => {
     res.status(200).end("Sanity Check : OK");
 })
 
-app.use('/', complaintRouter);
+app.use('/complaint', complaintRouter);
 app.use('/resource/material', materialRouter);
 app.use('/resource/labour', labourRouter);
+app.use('/user',userRouter)
 
 const port = process.env.PORT || 8000 ;
 app.listen(port, () =>{
