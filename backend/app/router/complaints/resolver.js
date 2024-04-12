@@ -31,17 +31,6 @@ router.post('/', async (req, res) => {
     }
 })
 
-// router.delete('/:appId', async (req, res) => {
-//     const {appId} = req.params;
-//     const {email} = req.body;
-//     try {
-//         const deletecomplaint = await datasources._delete(appId,email);
-//         res.json(deletecomplaint);
-//     } catch (error) {
-//         res.json(error);
-//     }
-// })
-
 router.delete('/:appId', async (req,res) => {
     const {appId} = req.params;
     try {

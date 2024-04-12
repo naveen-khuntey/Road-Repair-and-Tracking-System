@@ -25,11 +25,12 @@ export default function Stats() {
           <span className="text-sm font-semibold">NAME</span>
         </div>
         <div>
-          {complaintInfo.map((data, index) => (
+          {complaintInfo && complaintInfo.map((data, index) => (
             <Link to={`/complaint/${data._id}`}>
             <StatsCard slNO={index+1} id={data._id} location={data.location} type={data.type} name ={data.email.slice(0,6)} key={index} />
             </Link>
           ))}
+          {!complaintInfo && <p>Loading..</p>}
         </div>
       </div>
     </>

@@ -25,8 +25,16 @@ const addList = (data,setData,setList) => {
     .catch((err)=> {console.log(err);return false})
 }
 
-const deleteList = (id,email,setList) =>{
-    axios.delete(baseurl,{id,email})
+const deleteList = (id,setList) =>{
+    axios.delete(`${baseurl}/${id}`)
+    .then(() => {
+        getList(setList);
+    })
+    .catch((err) => console.log(err));
+}
+
+const updateList = (id,data,setList) => {
+    axios.patch(`${baseurl}/${id}`,data)
     .then(() => {
         getList(setList);
     })
@@ -36,5 +44,6 @@ const deleteList = (id,email,setList) =>{
 export {
     getList,
     addList,
-    deleteList
+    deleteList,
+    updateList
 }

@@ -20,7 +20,7 @@ export default function ComplainId({setComplaint}) {
     const [list,setList] = useState([]);
     const handleSubmit = async (event) => {
       event.preventDefault();
-      // deleteComplaint(id,setComplaint);
+      deleteComplaint(id);
       updateLabour(formData.labourID,{isAssigned:true},setLabours);
       addList(formData,setFromData,setList);
       console.log('Form submitted:', formData);
@@ -65,7 +65,7 @@ export default function ComplainId({setComplaint}) {
               required
             >
               <option value="">Select Labour</option>
-              {labours.map((labour) => (
+              {labours.filter((ele)=> ele.isAssigned === false).map((labour) => (
                 <>
                   <option key={labour._id} value={labour._id}>{labour.name}{" "}|{" "}{labour.expertise}</option>
                 </>

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { getList } from '../../utils/listController';
-import Supervisor from '../Supervisor';
-import StatsCard from '../StatsCard';
+import AdminStatsCard from './AdminStatsCard';
 import { getAllDetails } from '../../utils/labourController';
+import Admin from '../Admin';
 function List() {
   const [list,setList] = useState([]);
   const [labour,setLabour] = useState([]);
@@ -15,13 +15,14 @@ function List() {
   for(let i=0; i<list.length; i++) {
     merged.push({
     ...list[i], 
-    ...(labour.find((itmInner) => itmInner._id === list[i].labourID))}
-    );
+    ...(labour.find((itmInner) => itmInner._id === list[i].labourID)),
+        id1: list[i]._id
+    });
   }
-  console.log(merged);
+  console.log("merged",merged);
   return (
     <>  
-    <Supervisor />
+    <Admin />
     <div className="max-w-4xl mx-auto py-8">
       <div className=" flex justify-center items-center bg-gray-700 mb-6 py-2 px-4 rounded">
         <h1 className=" text-xl font-bold text-white">Complaint Details</h1>
@@ -34,8 +35,8 @@ function List() {
         <span className="text-sm font-semibold">Status</span>
       </div>
       <div>
-        {merged && merged.map((data, index) => (
-          <StatsCard slNO={index+1} id={data.id} location={data.name} type={data.materials.slice(0,21)} name={`${data.isCompleted === false ? "Pending" : "Completed"}`} key={index} />
+        {merged && merged.filter((data) => data.isCompleted === false).map((data, index) => (
+          <AdminStatsCard slNO={index+1} id={data.id} location={data.name} type={data.materials.slice(0,15)} iid={data.id1} key={index} />
         ))}
         {!merged && <p>Loading..</p>}
       </div>

@@ -8,7 +8,11 @@ import Stats from './Stats';
 import Admin from './Admin';
 import Navbar from './Navbar';
 import ResourcesCheck from './supervisor/ResourcesCheck';
-
+import List from './supervisor/List';
+import List1 from './admin/List1'
+import List2 from './admin/List2'
+import ResourcesCheck1 from './admin/ResourcesCheck1';
+import UpdateResource from './admin/UpdateResource';
 function Router() {
   const { isLoading } = useAuth0();
 
@@ -22,8 +26,12 @@ function Router() {
           <Route path="/admin" element={<Admin/>} />
           <Route path="/supervisor" element={<Supervisor/>} />
           <Route path="/allocate" element={<Stats/>} />
+          <Route path='/resource1'element={<ResourcesCheck1/>}/>
           <Route path="/resource" element={<ResourcesCheck/>} />
-    
+          <Route path='/update' element={< UpdateResource/>}/>
+          <Route path='/list' element={<List/>}/>
+          <Route path='/list1' element={<List1/>}/>
+          <Route path='/list2' element={<List2/>}/>
           <Route path="*" element={<LandingPage/>} />
         </Routes>  
       </div>

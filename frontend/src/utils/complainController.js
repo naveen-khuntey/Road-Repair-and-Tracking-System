@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const baseurl = process.env.machine_url || "http://localhost:8000";
+const baseurl = process.env.machine_url || "http://localhost:8000/complaint";
 
 const getAllComplaint = (setComplaint) => {
-    axios.get(`${baseurl}/complaint`)
+    axios.get(baseurl)
     .then(({data})=>{
         console.log(data);
         setComplaint(data);
@@ -12,7 +12,7 @@ const getAllComplaint = (setComplaint) => {
 }
 const addComplaint = (data,setData,setComplaint) => {
     // console.log("machine.js",data);
-    axios.post(`${baseurl}/complaint`,data,{
+    axios.post(baseurl,data,{
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
@@ -20,21 +20,19 @@ const addComplaint = (data,setData,setComplaint) => {
     })
     .then((ele)=>{
         console.log(ele);
-        setData("")
-        getAllComplaint(setComplaint)
-        return true;
+        setData("");
+        getAllComplaint(setComplaint);
     })
     .catch((err)=> {console.log(err);return false})
 }
 
-const deleteComplaint = (id,setComplaint) =>{
-    axios.delete(`${baseurl}/complaint/${id}`)
+const deleteComplaint = (id) =>{
+    axios.delete(`${baseurl}/${id}`)
     .then(() => {
-        getAllComplaint(setComplaint);
+        console.log("deleted succesfully");
     })
     .catch((err) => console.log(err));
 }
-
 export {
     getAllComplaint,
     addComplaint,

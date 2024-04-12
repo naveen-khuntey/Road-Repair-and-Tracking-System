@@ -10,6 +10,20 @@ const getAllDetails = (setLabours) => {
     })
     .catch((err)=>console.log(err));
 }
+const addLabour = (data,setData,setLabours) => {
+    axios.post(baseurl,data,{
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    })
+    .then((ele)=>{
+        console.log(ele);
+        setData("");
+        getAllDetails(setLabours);
+    })
+    .catch((err)=> {console.log(err);return false})
+}
 const deleteLabour = (appId,setLabours) => {
     axios.delete(`${baseurl}/${appId}`)
     .then(({data})=>{
@@ -28,6 +42,7 @@ const updateLabour = (appId,data,setLabours) => {
 }
 export {
     getAllDetails,
+    addLabour,
     deleteLabour,
     updateLabour
 }
