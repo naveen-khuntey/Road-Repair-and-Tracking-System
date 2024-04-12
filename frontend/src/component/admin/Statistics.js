@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React,{useState, useEffect} from 'react'
+import Admin from '../Admin'
+import { getAllDetails } from '../../utils/labourController';
 import { getList } from '../../utils/listController';
 import StatsCard from '../StatsCard';
-import { getAllDetails } from '../../utils/labourController';
-import Admin from '../Admin';
-function List() {
+export default function Statistics() {
   const [list,setList] = useState([]);
   const [labour,setLabour] = useState([]);
   useEffect(()=>{
@@ -24,7 +24,7 @@ function List() {
     <Admin />
     <div className="max-w-4xl mx-auto py-8">
       <div className=" flex justify-center items-center bg-gray-700 mb-6 py-2 px-4 rounded">
-        <h1 className=" text-xl font-bold text-white">Completed Works</h1>
+        <h1 className=" text-xl font-bold text-white">Statistics</h1>
       </div>
       <div className="flex justify-between items-center bg-gray-500 shadow-md rounded-lg p-4 mb-2">
         <span className="text-sm font-semibold">Sl. NO</span>
@@ -34,8 +34,8 @@ function List() {
         <span className="text-sm font-semibold">Status</span>
       </div>
       <div>
-        {merged && merged.filter((data) => data.isCompleted === true).map((data, index) => (
-          <StatsCard slNO={index+1} id={data.id} location={data.name} type={data.materials.slice(0,15)} name="Done" key={index} />
+        {merged && merged.map((data, index) => (
+          <StatsCard slNO={index+1} id={data.id} location={data.name} type={data.materials.slice(0,15)} name={`${data.isCompleted === true ? "Completed" : "Pending"}`} key={index} />
         ))}
         {!merged && <p>Loading..</p>}
       </div>
@@ -43,5 +43,3 @@ function List() {
   </>
   )
 }
-
-export default List

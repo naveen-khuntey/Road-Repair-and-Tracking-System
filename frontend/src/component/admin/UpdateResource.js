@@ -20,7 +20,7 @@ export default function UpdateResource() {
   const handleLabourSubmit = (e) => {
     e.preventDefault();
     // Implement logic to handle labour form submission (e.g., send data to backend)
-    if(labour){
+    if(labour?.name && labour?.expertise && labour?.phone && labour?.accountno){
       console.log("Labour form submitted:", labour);
       addLabour(labour, setLabour,{});
       alert("Labour Added Successfully");
@@ -39,9 +39,9 @@ export default function UpdateResource() {
     e.preventDefault();
     // Implement logic to handle material form submission (e.g., send data to backend)
 
-    if(materials){
+    if(materials?.name && materials?.quantity){
       console.log("Material form submitted:", materials);
-      addMaterial(materials,setMaterials);
+      addMaterial(materials,{});
       alert("Material Added Successfully");
     }
     setMaterials({

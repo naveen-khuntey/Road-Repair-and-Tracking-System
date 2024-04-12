@@ -13,6 +13,7 @@ import List1 from './admin/List1'
 import List2 from './admin/List2'
 import ResourcesCheck1 from './admin/ResourcesCheck1';
 import UpdateResource from './admin/UpdateResource';
+import Statistics from './admin/Statistics';
 function Router() {
   const { isLoading } = useAuth0();
 
@@ -32,6 +33,7 @@ function Router() {
           <Route path='/list' element={<List/>}/>
           <Route path='/list1' element={<List1/>}/>
           <Route path='/list2' element={<List2/>}/>
+          <Route path='/statistics' element={<Statistics/>}/>
           <Route path="*" element={<LandingPage/>} />
         </Routes>  
       </div>

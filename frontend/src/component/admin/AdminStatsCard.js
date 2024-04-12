@@ -1,13 +1,16 @@
 import React, {useState} from 'react';
-
-const AdminStatsCard = ({slNO, id,location,type, iid}) => {
+import { updateList } from '../../utils/listController';
+import { useNavigate } from 'react-router-dom';
+const AdminStatsCard = ({slNO, id,location,type, iid,setList}) => {
   const [status, setStatus] = useState(type); // Initialize status state with the provided type
-
+  const navigate = useNavigate();
   const handleStatusChange = async (newStatus,id) => {
     setStatus(newStatus); // Update the local state with the new status
     console.log(newStatus,id);
     // Implement logic to update the status in the backend
-    
+    updateList(id,{isCompleted: newStatus === 'Done' ? true : false},setList);
+    alert("Status Updated Successfully");
+    navigate("/list1");
   };
 
   const bgColorClass = slNO % 2 === 0 ? 'bg-gray-400' : 'bg-gray-200';
@@ -18,7 +21,6 @@ const AdminStatsCard = ({slNO, id,location,type, iid}) => {
       <span className="text-sm font-semibold">{id}</span>
       <span className="text-sm font-semibold">{location}</span>
       <span className="text-sm font-semibold">{type}</span>
-      {/* Select dropdown for status */}
       <select
         value={status}
         onChange={(e) => handleStatusChange(e.target.value, iid)}

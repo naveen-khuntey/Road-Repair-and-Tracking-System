@@ -17,11 +17,11 @@ export default function Navbar() {
   }
 
   return (
-  <nav className="flex justify-around bg-gray-800 p-4">
-    <NavLink className="text-white text-2xl font-bold mr-4" to="/">
-      RRTS
+  <nav className="flex justify-between bg-gray-800 p-4">
+    <NavLink className="text-white text-2xl font-bold ml-16" to="/">
+      Road Repair and Tracking System
     </NavLink>
-    <div className="flex gap-4 items-center">
+    <div className="flex gap-4 items-center mr-16">
       <div className="flex space-x-4">
         {navItems.filter(()=> isAuthenticated ? true : false).map((item) => (
           <NavLink

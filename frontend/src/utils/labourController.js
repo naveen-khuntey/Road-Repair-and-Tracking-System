@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseurl = process.env.machine_url || "http://localhost:8000/resource/labour";
+const baseurl = process.env.machine_url || "https://swe-project-2lyq.onrender.com/resource/labour";
 
 const getAllDetails = (setLabours) => {
     axios.get(baseurl)

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseurl = process.env.machine_url || "http://localhost:8000/resource/material";
+const baseurl = process.env.machine_url || "https://swe-project-2lyq.onrender.com/resource/material";
 
 const getAllMaterial = (setMaterials) => {
     axios.get(baseurl)
@@ -13,7 +13,6 @@ const getAllMaterial = (setMaterials) => {
 const addMaterial = (data,setMaterials) =>{
     axios.post(baseurl,data)
     .then(({data1})=>{
-        console.log(data1);
         setMaterials(data1);
     })
     .catch((err)=>console.log(err));

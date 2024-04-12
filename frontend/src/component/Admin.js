@@ -25,7 +25,7 @@ export default function Admin() {
     {
       id: 5,
       name: "Statistics",
-      link: "/"
+      link: "/statistics"
     }
   ]
   return (

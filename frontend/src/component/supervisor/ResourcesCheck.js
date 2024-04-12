@@ -19,6 +19,9 @@ export default function ResourcesCheck() {
         <Supervisor/>
         <div className="flex justify-between px-4 py-2">
             <div className="w-1/2 pr-2">
+            <div className=" flex justify-center items-center bg-gray-700 mb-6 py-2 px-4 rounded">
+                <h1 className=" text-xl font-bold text-white">Labour List</h1>
+            </div>
             <table className="table-auto w-full border border-black">
                 <thead>
                 <tr className="bg-blue-500">
@@ -39,6 +42,9 @@ export default function ResourcesCheck() {
             </table>
             </div>
             <div className="w-1/2 pl-2">
+            <div className=" flex justify-center items-center bg-gray-700 mb-6 py-2 px-4 rounded">
+                <h1 className=" text-xl font-bold text-white">Material List</h1>
+            </div>
             <table className="table-auto w-full border border-black">
                 <thead>
                 <tr className="bg-blue-500">
