@@ -27,8 +27,8 @@ const addComplaint = (data,setData,setComplaint) => {
     .catch((err)=> {console.log(err);return false})
 }
 
-const deleteComplaint = (id,email,setComplaint) =>{
-    axios.delete(`${baseurl}/complaint`,{id,email})
+const deleteComplaint = (id,setComplaint) =>{
+    axios.delete(`${baseurl}/complaint/${id}`)
     .then(() => {
         getAllComplaint(setComplaint);
     })

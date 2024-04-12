@@ -11,19 +11,19 @@ router.get('/',async (req,res)=>{
 router.get('/:appId', async (req, res) => { 
     const {appId} = req.params;
     try {
-        const user = await datasources.find(appId);
-        res.json(user);
+        const list = await datasources.find(appId);
+        res.json(list);
     } catch (error) {
         res.end('Internal server error');
     }
 });
 
 router.post('/', async (req, res) => {
-    const user = req.body;
+    const list = req.body;
     try {
-        const createuser = await datasources.create(user);
-        console.log(createuser);
-        res.json(createuser);
+        const createList = await datasources.create(list);
+        console.log(createList);
+        res.json(createList);
     } catch (error) {
         res.json(error);
     }
@@ -32,19 +32,19 @@ router.delete('/:appId',async (req,res) => {
     const {appId} = req.params;
     console.log(appId);
     try {
-        const user = await datasources.delete1(appId);
-        res.json(user);
+        const list = await datasources.delete1(appId);
+        res.json(list);
     } catch (error) {
         res.end('Internal server error');
     }
 })
 router.patch('/:appId',async (req,res) => {
     const {appId} = req.params;
-    const user = req.body;
-    console.log(appId,user);
+    const list = req.body;
+    console.log(appId,list);
     try {
-        const user1 = await datasources.update(appId,user);
-        res.json(user1);
+        const list1 = await datasources.update(appId,list);
+        res.json(list1);
     } catch (error) {
         res.end('Internal server error');
     }

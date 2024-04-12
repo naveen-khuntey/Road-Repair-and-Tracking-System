@@ -2,10 +2,6 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
 const LabourSchema = new Schema({
-    type: {
-        type: Number,
-        required: true
-    }, 
     name: {
         type: String,
         required: true
@@ -22,6 +18,10 @@ const LabourSchema = new Schema({
         type: Number,
         required: true
     },
+    isAssigned : {
+        type: Boolean,
+        default: false
+    }
 });
 
 module.exports = mongoose.model('Labour', LabourSchema)

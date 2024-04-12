@@ -24,9 +24,14 @@ const _delete = async (appId,email) => {
     const complaint = await model.findOneAndDelete({appId,email});
     return complaint;
 }
+const delete1 = async (appId) => {
+    const complaint = await model.findByIdAndDelete(appId);
+    return complaint;
+}
 module.exports = {
     create,
     find,
     find1,
-    _delete
+    _delete,
+    delete1
 }

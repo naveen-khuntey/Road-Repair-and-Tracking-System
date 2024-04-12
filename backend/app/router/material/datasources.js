@@ -10,19 +10,21 @@ const find = async(appID) => {
 }
  
 const create = async (Material) => {
-    const {type, name, quantity} = Material;
- 
+    const { name, quantity} = Material;
     const newMaterial = await model.create({
-        type,
         name,
         quantity,
     });
 
     return newMaterial;
 }
-
+const updateall = async (data) => {
+    const labour = await model.updateMany({},data);
+    return labour;
+}
 module.exports = {
     create,
     find,
-    find1
+    find1,
+    updateall
 }

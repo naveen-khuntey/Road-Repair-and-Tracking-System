@@ -13,7 +13,6 @@ export default function LandingPage() {
   }
   useEffect(() => {
     getUser(setUser);
-    console.log(user1);
   },[]);
   const handleSuper = () => {
     const us = user1.filter((ele)=> ele.isSupervisor === true && ele.email === user.email);
@@ -26,6 +25,7 @@ export default function LandingPage() {
       navigate("/supervisor");
     }
   }
+  const dummyHandle = () => {}
   const handleAdmin = () => {
     const us = user1.filter((ele)=> ele.isAdmin === true && ele.email === user.email);
     if(us.length === 0){
@@ -41,21 +41,21 @@ export default function LandingPage() {
   const cardata = [
     {
       id : '1',
-      imageSrc :{img},
+      imageSrc :img,
       buttonText: "Register Complaint",
       path: "/complaint",
-      handle: ""
+      handle: dummyHandle
     },
     {
       id : '2',
-      imageSrc :{img},
+      imageSrc :img,
       buttonText: "Supervisor Login",
       path: "/supervisor",
       handle: handleSuper
     },
     {
       id : '3',
-      imageSrc :{img},
+      imageSrc :img,
       buttonText: "Admin Login",
       path: "/admin",
       handle: handleAdmin
@@ -69,7 +69,7 @@ export default function LandingPage() {
   ) : (
     <div className='flex justify-center align-middle gap-8 mt-9'>
       {cardata.map((ele)=>{
-        return <Card  key={ele.id} imageSrc={img} buttonText={ele.buttonText} path={ele.path} handle={ele.handle}/>
+        return <Card  key={ele.id} imageSrc={ele.imageSrc} buttonText={ele.buttonText} path={ele.path} handle={ele.handle}/>
       })}
     </div>
   ) 

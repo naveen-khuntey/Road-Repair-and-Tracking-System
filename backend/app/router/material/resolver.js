@@ -28,4 +28,14 @@ router.post('/', async (req, res) => {
         res.json(error);
     }
 })
+router.patch('/',async (req,res)=>{
+    const material = req.body;
+    try {
+        const updateMaterial = await datasources.updateall(material);
+        console.log(updateMaterial);
+        res.json(updateMaterial);
+    } catch (error) {
+        res.json(error);
+    }
+})
 module.exports = router;

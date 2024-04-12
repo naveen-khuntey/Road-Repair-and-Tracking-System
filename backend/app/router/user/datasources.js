@@ -25,10 +25,20 @@ const create = async (user) => {
 
     return newUser;
 }
+const delete1 = async(appId) => {
+    const user = await model.findByIdAndDelete(appId);
+    return user;
+}
 
+const update = async (appId,data) => {
+    const user = await model.findByIdAndUpdate({_id:appId},data);
+    return user;
+}
 module.exports = {
     create,
     find,
     find1,
-    find2
+    find2,
+    delete1,
+    update
 }

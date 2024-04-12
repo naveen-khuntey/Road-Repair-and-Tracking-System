@@ -22,9 +22,19 @@ const create = async (labour) => {
 
     return newLabour;
 }
+const delete1 = async(appId) => {
+    const labour = await model.findByIdAndDelete(appId);
+    return labour;
+}
 
+const update = async (appId,data) => {
+    const labour = await model.findByIdAndUpdate({_id:appId},data);
+    return labour;
+}
 module.exports = {
     create,
     find,
-    find1
+    find1,
+    delete1,
+    update
 }

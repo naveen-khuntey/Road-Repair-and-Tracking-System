@@ -29,4 +29,25 @@ router.post('/', async (req, res) => {
         res.json(error);
     }
 })
+router.delete('/:appId',async (req,res) => {
+    const {appId} = req.params;
+    console.log(appId);
+    try {
+        const labour = await datasources.delete1(appId);
+        res.json(labour);
+    } catch (error) {
+        res.end('Internal server error');
+    }
+})
+router.patch('/:appId',async (req,res) => {
+    const {appId} = req.params;
+    const labour = req.body;
+    console.log(appId,labour);
+    try {
+        const labour1 = await datasources.update(appId,labour);
+        res.json(labour1);
+    } catch (error) {
+        res.end('Internal server error');
+    }
+})
 module.exports = router;
